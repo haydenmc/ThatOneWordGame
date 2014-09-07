@@ -409,7 +409,8 @@ div.com_playui div.leftbar ul.roundlist {
   top: 0;
   left: 0;
   right: 0;
-  height: calc(100% - 225px);
+  height: calc(100% - 215px);
+  overflow: hidden;
 }
 div.com_playui div.leftbar ul.roundlist li {
   text-align: center;
@@ -444,6 +445,7 @@ div.com_playui div.leftbar ul.playerlist {
   right: 0;
   height: 225px;
   text-align: center;
+  overflow-y: auto;
 }
 div.com_playui div.leftbar ul.playerlist li {
   text-align: center;

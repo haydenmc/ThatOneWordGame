@@ -28,7 +28,7 @@ namespace ThatOneWordGame
 #endif
 			bundles.Add(tsBundle);
 
-			bundles.Add(new StyleBundle("~/Content/css").Include(
+			bundles.Add(new StyleBundle("~/Content/bundles/css").Include(
 					  "~/Content/css/Site.css", new CssRewriteUrlTransform()));
 
 			// Set EnableOptimizations to false for debugging. For more information,

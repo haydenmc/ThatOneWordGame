@@ -31,6 +31,27 @@
 		}
 	}
 
+	public updateRoundHistory(rounds: Array<Round>) {
+		var roundList = <HTMLElement>(this.getElement().getElementsByClassName("roundlist")[0]);
+		roundList.innerHTML = "";
+		for (var i = rounds.length - 1; i >= 0; i--) {
+			var listitem = document.createElement("li");
+			var name = document.createElement("div");
+			name.classList.add("playername");
+			name.innerHTML = rounds[i].Player.Name;
+			var word = document.createElement("div");
+			word.classList.add("word");
+			word.innerHTML = rounds[i].Word.toString();
+			var score = document.createElement("div");
+			score.classList.add("score");
+			score.innerHTML = rounds[i].Score.toString();
+			listitem.appendChild(name);
+			listitem.appendChild(word);
+			listitem.appendChild(score);
+			roundList.appendChild(listitem);
+		}
+	}
+
 	public newRound(r: Round) {
 		var playpane = <HTMLElement>this.getElement().getElementsByClassName("playpane")[0];
 		var input = (<HTMLElement>playpane.getElementsByClassName("wordentry")[0]).getElementsByTagName("input")[0];
@@ -38,6 +59,7 @@
 		if (r.Player.ConnectionId == this.getApplication().getHub().getConnectionId()) {
 			input.disabled = false;
 			playpane.getElementsByTagName("h1")[0].innerHTML = "It's your turn!";
+			input.focus();
 			if (r.Word.length == 0) {
 				playpane.getElementsByTagName("h2")[0].innerHTML = "Enter the first letter of a word.";
 			} else {
@@ -46,7 +68,23 @@
 		} else {
 			input.disabled = true;
 			playpane.getElementsByTagName("h1")[0].innerHTML = r.Player.Name + "'s turn!";
+			playpane.getElementsByTagName("h2")[0].innerHTML = "Waiting for a letter...";
 		}
+	}
+
+	public endRound(r: Round) {
+		var playpane = <HTMLElement>this.getElement().getElementsByClassName("playpane")[0];
+		var input = (<HTMLElement>playpane.getElementsByClassName("wordentry")[0]).getElementsByTagName("input")[0];
+		
+		input.disabled = true;
+		if (r.Score > 0) {
+			playpane.getElementsByTagName("h1")[0].innerHTML = "Word Complete!";
+			playpane.getElementsByTagName("h2")[0].innerHTML = r.Player.Name + " scored " + r.Score + " points.";
+		} else {
+			playpane.getElementsByTagName("h1")[0].innerHTML = "Oops!";
+			playpane.getElementsByTagName("h2")[0].innerHTML = r.Player.Name + " lost " + (-1 * r.Score) + " points.";
+		}
+		(<HTMLElement>playpane.getElementsByClassName("wordentry")[0]).getElementsByTagName("span")[0].innerHTML = r.Word;
 	}
 
 	public roundUpdate(r: Round) {

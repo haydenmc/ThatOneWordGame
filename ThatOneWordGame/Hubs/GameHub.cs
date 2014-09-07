@@ -29,6 +29,25 @@ namespace ThatOneWordGame.Hubs
 
 		public override Task OnDisconnected(bool stopCalled)
 		{
+			if (Playing)
+			{
+				if (CurrentRound.Player.ConnectionId == Context.ConnectionId)
+				{
+					if (Players.Values.Where(x => x.Playing).Count() > 1)
+					{
+						CurrentRound.Player = _nextPlayer();
+						Clients.All.RoundUpdate(CurrentRound);
+					}
+					else
+					{
+						// The last player left!
+						Playing = false;
+						RoundHistory.Clear();
+						CurrentRound = null;
+					}
+				}
+				
+			}
 			Players.Remove(Context.ConnectionId);
 			_updateLeaderboard();
 			return base.OnDisconnected(stopCalled);
@@ -56,10 +75,18 @@ namespace ThatOneWordGame.Hubs
 				player.Playing = true;
 			}
 			_updateLeaderboard();
+			_updateRoundHistory();
 			if (!Playing)
 			{
 				Playing = true;
 				_nextRound();
+			}
+			else
+			{
+				if (CurrentRound != null)
+				{
+					Clients.Client(Context.ConnectionId).RoundUpdate(CurrentRound);
+				}
 			}
 		}
 
@@ -80,18 +107,21 @@ namespace ThatOneWordGame.Hubs
 					CurrentRound.Score = -1 * _calculatePoints(CurrentRound.Word);
 					CurrentRound.Player.Score += CurrentRound.Score;
 					Clients.All.EndRound(CurrentRound);
+					_updateLeaderboard();
 					_scheduleNextRound();
 					return false;
 				}
 
 				// If we completed a word, end the round and award the player.
-				var endWordCount = context.Words.Where(w => w.Word1.ToUpper().Equals(CurrentRound.Word.ToUpper())).Count();
+				var endWordCount = context.Words.Where(w => w.Word1.Length >= 4).Where(w => w.Word1.ToUpper().Equals(CurrentRound.Word.ToUpper())).Count();
 				if (endWordCount > 0)
 				{
 					CurrentRound.Score = _calculatePoints(CurrentRound.Word);
 					CurrentRound.Player.Score += CurrentRound.Score;
 					Clients.All.EndRound(CurrentRound);
+					_updateLeaderboard();
 					_scheduleNextRound();
+					
 					return true;
 				}
 
@@ -137,7 +167,7 @@ namespace ThatOneWordGame.Hubs
 			int lastPlayerIndex = 0;
 			if (CurrentRound != null)
 			{
-				lastPlayerIndex = Players.Values.ToList().IndexOf(CurrentRound.Player);
+				lastPlayerIndex = Players.Values.Where(p => p.Playing == true).ToList().IndexOf(CurrentRound.Player);
 				lastPlayerIndex += 1;
 				if (lastPlayerIndex >= Players.Values.Count)
 				{
@@ -190,11 +220,19 @@ namespace ThatOneWordGame.Hubs
 		// ----------------------------
 
 		/// <summary>
-		/// Updates the leader board on all clients
+		/// Updates the leader board on all clients.
 		/// </summary>
 		private void _updateLeaderboard()
 		{
 			Clients.All.UpdateLeaderboard(Players.Values.Where(x => x.Playing == true).OrderByDescending(x => x.Score).ToList());
+		}
+
+		/// <summary>
+		/// Sends the round history to all players.
+		/// </summary>
+		private void _updateRoundHistory()
+		{
+			Clients.All.UpdateRoundHistory(RoundHistory);
 		}
 
 		private void _nextRound()
@@ -202,6 +240,7 @@ namespace ThatOneWordGame.Hubs
 			if (CurrentRound != null)
 			{
 				RoundHistory.Add(CurrentRound);
+				_updateRoundHistory();
 			}
 			var startingPlayer = _nextPlayer();
 			CurrentRound = new Round();

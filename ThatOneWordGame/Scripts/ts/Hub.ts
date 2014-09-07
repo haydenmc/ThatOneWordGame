@@ -15,8 +15,10 @@ class Hub {
 			console.log("SERVER: " + message);
 		};
 		this.hub.client.updateLeaderboard = (players: Array<Player>) => this.updateLeaderboard(players);
+		this.hub.client.UpdateRoundHistory = (rounds: Array<Round>) => this.updateRoundHistory(rounds);
 		this.hub.client.newRound = (round: Round) => this.newRound(round);
 		this.hub.client.roundUpdate = (round: Round) => this.roundUpdate(round);
+		this.hub.client.endRound = (round: Round) => this.endRound(round);
 	}
 
 	public connect(callback: () => void) {
@@ -44,12 +46,20 @@ class Hub {
 		this.application.getDataModel().updatePlayers(players);
 	}
 
+	public updateRoundHistory(rounds: Array<Round>) {
+		this.application.getDataModel().updateRounds(rounds);
+	}
+
 	public newRound(round: Round) {
 		this.application.getPlayUI().newRound(round);
 	}
 
 	public roundUpdate(round: Round) {
 		this.application.getPlayUI().roundUpdate(round);
+	}
+
+	public endRound(round: Round) {
+		this.application.getPlayUI().endRound(round);
 	}
 
 	/* Server-side methods */

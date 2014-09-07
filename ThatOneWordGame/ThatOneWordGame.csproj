@@ -255,6 +255,7 @@
       <DependentUpon>WordModel.edmx</DependentUpon>
       <LastGenOutput>WordModel.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\towg.pubxml" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
