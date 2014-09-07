@@ -76,4 +76,27 @@ div.com_playui div.leftbar ul.playerlist li span.score {
 div.com_playui div.leftbar ul.playerlist li.selected span.score {
   font-weight: normal;
 }
+div.com_playui div.playpane {
+  position: absolute;
+  left: 350px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+div.com_playui div.playpane div.wordentry {
+  margin-top: 24px;
+  text-align: center;
+  font-family: "Code Pro";
+  font-size: 82px;
+  font-weight: normal;
+}
+div.com_playui div.playpane div.wordentry input {
+  color: #fff;
+  font-size: 82px;
+  width: 48px;
+  border: 0;
+  border-bottom: 2px solid #fff;
+  background-color: transparent;
+  display: inline-block;
+}
 /*# sourceMappingURL=PlayUI.css.map */

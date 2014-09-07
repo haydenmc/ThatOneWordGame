@@ -299,6 +299,7 @@
     <TypeScriptCompile Include="Scripts\ts\Hub.ts" />
     <TypeScriptCompile Include="Scripts\ts\Models\DataModel.ts" />
     <TypeScriptCompile Include="Scripts\ts\Models\Player.ts" />
+    <TypeScriptCompile Include="Scripts\ts\Models\Round.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\signalr\signalr.d.ts" />
   </ItemGroup>
