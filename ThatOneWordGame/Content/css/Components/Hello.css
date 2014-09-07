@@ -1,0 +1,21 @@
+﻿div.com_hello {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-top: 128px;
+  text-align: center;
+}
+div.com_hello input {
+  width: 512px;
+  font-size: 48px;
+  color: #fff;
+  text-align: center;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 4px solid #fff;
+  background-color: transparent;
+  margin: 16px;
+}
+/*# sourceMappingURL=Hello.css.map */

@@ -1,0 +1,87 @@
+﻿div.com_playui {
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+
+	div.leftbar {
+		position:absolute;
+		top:0;
+		bottom:0;
+		left:0;
+		width:350px;
+		border-right:1px solid #111111;
+
+		ul.roundlist {
+			display:block;
+			margin:0;
+			padding:0;
+			position:absolute;
+			top:0;
+			left:0;
+			right:0;
+			height:calc(~"100% - 225px");
+
+			li {
+				text-align:center;
+				line-height:0.8;
+				padding:12px 0;
+				div.playername {
+					font-size:28px;
+					font-family: "Code Pro";
+					font-weight: 100;
+					color:#777;
+				}
+				div.word {
+					font-size:48px;
+					font-family: "Code Pro";
+					font-weight: normal;
+					color:#fff;
+				}
+				div.score {
+					font-size:32px;
+					font-family: "Code Pro";
+					font-weight: 100;
+					color:#555;
+				}
+			}
+		}
+
+		ul.playerlist {
+			display:block;
+			margin:0;
+			padding:0;
+			position:absolute;
+			bottom:0;
+			left:0;
+			right:0;
+			height:225px;
+			text-align:center;
+
+			li {
+				text-align:center;
+				line-height:0.8;
+				padding:8px 0;
+				font-size:38px;
+
+				span.name {
+					font-family: "Code Pro";
+					font-weight: normal;
+					color:#fff;
+				}
+				span.score {
+					font-family: "Code Pro";
+					font-weight: 100;
+					color:#555;
+				}
+
+				&.selected {
+					span.score {
+						font-weight:normal;
+					}
+				}
+			}
+		}
+	}
+}

@@ -14,9 +14,12 @@
 	<!-- Render all view components -->
 	<!-- These are the HTML components to each TypeScript component object. -->
 	@RenderPage("Components/Connecting.cshtml")
+	@RenderPage("Components/Hello.cshtml")
+	@RenderPage("Components/PlayUI.cshtml")
 
 	<!-- Load all scripts! -->
 	@Scripts.Render("~/bundles/js")
 	@Scripts.Render("~/bundles/ts")
+	<script src="~/signalr/hubs"></script>
 </body>
 </html>

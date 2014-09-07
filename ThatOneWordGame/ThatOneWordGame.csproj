@@ -69,6 +69,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -142,6 +144,24 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\GameHub.cs" />
+    <Compile Include="Models\Word.cs">
+      <DependentUpon>WordModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WordModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WordModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WordModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WordModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WordModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WordModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -157,6 +177,18 @@
     </Content>
     <Content Include="Content\css\Components\Connecting.min.css">
       <DependentUpon>Connecting.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Components\Hello.css">
+      <DependentUpon>Hello.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Components\Hello.min.css">
+      <DependentUpon>Hello.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Components\PlayUI.css">
+      <DependentUpon>PlayUI.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Components\PlayUI.min.css">
+      <DependentUpon>PlayUI.css</DependentUpon>
     </Content>
     <Content Include="Content\css\Fonts.css">
       <DependentUpon>Fonts.less</DependentUpon>
@@ -198,6 +230,31 @@
     <Content Include="Content\css\Components\Connecting.css.map">
       <DependentUpon>Connecting.css</DependentUpon>
     </Content>
+    <Content Include="Content\css\Components\Hello.less" />
+    <Content Include="Content\css\Components\Hello.css.map">
+      <DependentUpon>Hello.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\Components\PlayUI.less" />
+    <Content Include="Content\css\Components\PlayUI.css.map">
+      <DependentUpon>PlayUI.css</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\WordModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WordModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\WordModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WordModel.edmx</DependentUpon>
+      <LastGenOutput>WordModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\WordModel.edmx.diagram">
+      <DependentUpon>WordModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\WordModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WordModel.edmx</DependentUpon>
+      <LastGenOutput>WordModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -221,10 +278,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Game\Index.cshtml" />
     <Content Include="Views\Game\Components\Connecting.cshtml" />
+    <Content Include="Views\Game\Components\Hello.cshtml" />
+    <Content Include="Views\Game\Components\PlayUI.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -232,9 +290,20 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\ts\Animator.ts" />
-    <TypeScriptCompile Include="Scripts\ts\App.ts" />
+    <TypeScriptCompile Include="Scripts\ts\Application.ts" />
     <TypeScriptCompile Include="Scripts\ts\Component.ts" />
     <TypeScriptCompile Include="Scripts\ts\Components\Connecting.ts" />
+    <TypeScriptCompile Include="Scripts\ts\Components\Hello.ts" />
+    <TypeScriptCompile Include="Scripts\ts\Components\PlayUI.ts" />
+    <TypeScriptCompile Include="Scripts\ts\Debug.ts" />
+    <TypeScriptCompile Include="Scripts\ts\Hub.ts" />
+    <TypeScriptCompile Include="Scripts\ts\Models\DataModel.ts" />
+    <TypeScriptCompile Include="Scripts\ts\Models\Player.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\signalr\signalr.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

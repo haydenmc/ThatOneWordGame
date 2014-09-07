@@ -1,4 +1,8 @@
 ﻿div.com_connecting {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   margin-top: 128px;
 }
 /*# sourceMappingURL=Connecting.css.map */
