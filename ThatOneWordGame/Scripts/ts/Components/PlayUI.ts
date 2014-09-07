@@ -44,7 +44,12 @@
 			word.innerHTML = rounds[i].Word.toString();
 			var score = document.createElement("div");
 			score.classList.add("score");
-			score.innerHTML = rounds[i].Score.toString();
+			if (rounds[i].Score > 0) {
+				score.innerHTML = "+" + rounds[i].Score.toString();
+			} else {
+				score.innerHTML = rounds[i].Score.toString();
+			}
+			
 			listitem.appendChild(name);
 			listitem.appendChild(word);
 			listitem.appendChild(score);
