@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>That One Word Game</title>
+	@Styles.Render("~/Content/css")
+</head>
+<body>
+	<!-- Render all view components -->
+	<!-- These are the HTML components to each TypeScript component object. -->
+	@RenderPage("Components/Connecting.cshtml")
+
+	<!-- Load all scripts! -->
+	@Scripts.Render("~/bundles/js")
+	@Scripts.Render("~/bundles/ts")
+</body>
+</html>

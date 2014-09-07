@@ -1,0 +1,15 @@
+﻿@font-face {
+  font-family: 'Code Pro';
+  src: url('../Fonts/Code_Pro_Light_Demo-webfont.eot');
+  src: url('../Fonts/Code_Pro_Light_Demo-webfont.eot?#iefix') format('embedded-opentype'), url('../Fonts/Code_Pro_Light_Demo-webfont.woff2') format('woff2'), url('../Fonts/Code_Pro_Light_Demo-webfont.woff') format('woff'), url('../Fonts/Code_Pro_Light_Demo-webfont.ttf') format('truetype'), url('../Fonts/Code_Pro_Light_Demo-webfont.svg#code_pro_light_demoregular') format('svg');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Code Pro';
+  src: url('../Fonts/Code_Pro_Demo-webfont.eot');
+  src: url('../Fonts/Code_Pro_Demo-webfont.eot?#iefix') format('embedded-opentype'), url('../Fonts/Code_Pro_Demo-webfont.woff2') format('woff2'), url('../Fonts/Code_Pro_Demo-webfont.woff') format('woff'), url('../Fonts/Code_Pro_Demo-webfont.ttf') format('truetype'), url('../Fonts/Code_Pro_Demo-webfont.svg#code_pro_demoregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/*# sourceMappingURL=Fonts.css.map */
